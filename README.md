@@ -9,7 +9,7 @@ CORE GAMEPLAY
 • 	Pixel-art cars with customizable stats
 • 	Lap tracking, checkpoints, finish detection
 • 	Boost pads and off-road slowdown
-• 	AI racers using waypoint navigation
+• 	
 SPLIT-SCREEN MULTIPLAYER
 • 	Supports 1-player or 2-player modes
 • 	Player-specific controls (keyboard and gamepad)
