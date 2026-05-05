@@ -78,6 +78,8 @@ DEVELOPMENT NOTES
 • 	Clean require_relative structure
 • 	Designed for easy modding and expansion
 
+
+OPEN WORLD NOT WORKING YET AND IS A WORK IN PROGRESS!!
 LICENSE
 MIT License (or your preferred license)
 
