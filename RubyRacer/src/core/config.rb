@@ -1,3 +1,4 @@
+#src/core/
 module Config
   # Player mode (1P or 2P)
   @player_mode = :two_player
@@ -32,55 +33,55 @@ module Config
     total_laps: 3,
     countdown: 3
   }
-  CARS = [
-    { name: "Ripper v3",
-      max_speed: 255, accel: 480, brake: 700, turn: 2.8,
-      sprite: "assets/cars/car7.png" },
+CARS = [
+  { name: "Ripper v3",
+    max_speed: 105, accel: 360, brake: 700, turn: 3.0,
+    sprite: "assets/cars/car7.png" },
 
-    { name: "Purp F1",
-      max_speed: 315, accel: 650, brake: 750, turn: 4.2,
-      sprite: "assets/cars/car11.png" },
+  { name: "Purp F1",
+    max_speed: 150, accel: 520, brake: 750, turn: 4.4,
+    sprite: "assets/cars/car11.png" },
 
-    { name: "Ferrari F1 08",
-      max_speed: 310, accel: 650, brake: 750, turn: 4.2,
-      sprite: "assets/cars/car12.png" },
+  { name: "Ferrari F1 08",
+    max_speed: 148, accel: 520, brake: 750, turn: 4.4,
+    sprite: "assets/cars/car12.png" },
 
-    { name: "Speedster",
-      max_speed: 275, accel: 460, brake: 720, turn: 3.8,
-      sprite: "assets/cars/car6.png" },
+  { name: "Speedster",
+    max_speed: 130, accel: 380, brake: 720, turn: 4.0,
+    sprite: "assets/cars/car6.png" },
 
-    { name: "GTI SL3",
-      max_speed: 235, accel: 330, brake: 750, turn: 3.0,
-      sprite: "assets/cars/car5.png" },
+  { name: "GTI SL3",
+    max_speed: 105, accel: 260, brake: 750, turn: 3.2,
+    sprite: "assets/cars/car5.png" },
 
-    { name: "Rugoti",
-      max_speed: 245, accel: 420, brake: 720, turn: 3.4,
-      sprite: "assets/cars/car4.png" },
+  { name: "Rugoti",
+    max_speed: 115, accel: 330, brake: 720, turn: 3.6,
+    sprite: "assets/cars/car4.png" },
 
-    { name: "REV-X",
-      max_speed: 255, accel: 450, brake: 800, turn: 3.6,
-      sprite: "assets/cars/car1.png" },
+  { name: "REV-X",
+    max_speed: 125, accel: 350, brake: 800, turn: 3.8,
+    sprite: "assets/cars/car1.png" },
 
-    { name: "DRIFT-KING",
-      max_speed: 265, accel: 400, brake: 650, turn: 5.0,
-      sprite: "assets/cars/car2.png" },
+  { name: "DRIFT-KING",
+    max_speed: 135, accel: 300, brake: 650, turn: 5.4,
+    sprite: "assets/cars/car2.png" },
 
-    { name: "PO-LICE",
-      max_speed: 285, accel: 430, brake: 720, turn: 4.4,
-      sprite: "assets/cars/car3.png" },
+  { name: "PO-LICE",
+    max_speed: 145, accel: 340, brake: 720, turn: 4.6,
+    sprite: "assets/cars/car3.png" },
 
-    { name: "Thunderbolt",
-      max_speed: 245, accel: 580, brake: 720, turn: 2.6,
-      sprite: "assets/cars/car8.png" },
+  { name: "Thunderbolt",
+    max_speed: 135, accel: 460, brake: 720, turn: 2.8,
+    sprite: "assets/cars/car8.png" },
 
-    { name: "SRS 300",
-      max_speed: 225, accel: 360, brake: 900, turn: 2.4,
-      sprite: "assets/cars/car9.png" },
+  { name: "SRS 300",
+    max_speed: 95, accel: 280, brake: 900, turn: 2.6,
+    sprite: "assets/cars/car9.png" },
 
-    { name: "AMBUR-LANCE",
-      max_speed: 195, accel: 280, brake: 800, turn: 3.2,
-      sprite: "assets/cars/car10.png" }
-  ]
+  { name: "AMBUR-LANCE",
+    max_speed: 70, accel: 200, brake: 800, turn: 3.4,
+    sprite: "assets/cars/car10.png" }
+]
   TRACKS = {
     track1: {
       name: "City Circuit",

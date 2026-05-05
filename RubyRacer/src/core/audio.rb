@@ -1,4 +1,5 @@
 module Audio
+  #DEVELOPMENTAL, SOUND NOT GOOD
   def self.load
     @boost = Gosu::Sample.new("assets/audio/boost.mp3")
     @rev   = Gosu::Sample.new("assets/audio/rev.mp3")

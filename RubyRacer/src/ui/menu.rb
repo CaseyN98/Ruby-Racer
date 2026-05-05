@@ -4,19 +4,27 @@ require_relative '../gameplay/car_select'
 require_relative '../gameplay/track_select'
 require_relative '../core/game'
 require_relative 'player_mode_menu'
+require_relative '../gameplay/open_world'   # <-- NEW
 
 class Menu < Chingu::GameState
   def initialize
     super
 
-    @options = ["PLAYER MODE", "CAR SELECT", "START RACE", "QUIT"]
+    @options = [
+      "PLAYER MODE",
+      "CAR SELECT",
+      "START RACE",
+      "OPEN WORLD",   # <-- NEW OPTION
+      "QUIT"
+    ]
+
     @selected = 0
     @input_timer = 300
 
     @title_font = Gosu::Font.new(64)
     @font       = Gosu::Font.new(32)
 
-    # New visual assets
+    # Visual assets
     @bg   = Gosu::Image.new("assets/ect/menu_bg.png", tileable: true)
     @logo = Gosu::Image.new("assets/ect/logo.png")
   end
@@ -45,7 +53,8 @@ class Menu < Chingu::GameState
     when 0 then push_game_state(PlayerModeMenu)      # PLAYER MODE
     when 1 then push_game_state(CarSelect.new(0))    # CAR SELECT
     when 2 then push_game_state(TrackSelect)         # START RACE
-    when 3 then $window.close                        # QUIT
+    when 3 then push_game_state(OpenWorld)           # OPEN WORLD
+    when 4 then $window.close                        # QUIT
     end
   end
 
@@ -95,6 +104,5 @@ class Menu < Chingu::GameState
 
       @font.draw_text(opt, x, y, 10, scale, scale, color)
     end
-
-end
   end
+end

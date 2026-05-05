@@ -109,19 +109,65 @@ class Car
       drag = 0.88
     end
 
-    @speed += @throttle * cur_accel * dt
-    @speed -= @brake * @stats[:brake] * dt if @brake > 0
-    @speed *= (drag ** (dt * 60))
-    @speed = @speed.clamp(-120, cur_max)
+# --- DRIFT PHYSICS ---
 
-    turn_ability = (@speed.abs / 220.0).clamp(0.25, 1.2)
-    @angle += @steer * @stats[:turn] * turn_ability * dt
+# Convert angle to forward direction
+dir_x = Math.cos(@angle)
+dir_y = Math.sin(@angle)
 
-    @vx = Math.cos(@angle) * @speed
-    @vy = Math.sin(@angle) * @speed
+# Forward acceleration (no auto-aligning)
+@vx += dir_x * @throttle * cur_accel * dt
+@vy += dir_y * @throttle * cur_accel * dt
 
-    dx = @vx * dt
-    dy = @vy * dt
+# Braking reduces velocity in direction of travel
+if @brake > 0
+  @vx *= (1.0 - @brake * 0.18 * dt)
+  @vy *= (1.0 - @brake * 0.18 * dt)
+end
+
+# --- Decompose velocity into forward + sideways ---
+forward_speed  = @vx * dir_x + @vy * dir_y
+sideways_speed = @vx * -dir_y + @vy * dir_x
+
+# Grip values (tune these)
+grip  = 0.22     # how fast sideways slip is removed
+drift = 0.80     # how much sideways slip remains each frame
+
+# Reduce sideways velocity (this IS the drift)
+sideways_speed *= drift
+
+# Reconstruct velocity
+@vx = dir_x * forward_speed + -dir_y * sideways_speed
+@vy = dir_y * forward_speed +  dir_x * sideways_speed
+
+# --- Steering becomes stronger when sliding ---
+drift_factor = (sideways_speed.abs / 40.0).clamp(0.0, 1.0)
+turn_strength = @stats[:turn] * (1.0 + drift_factor * 1.4)
+
+@angle += @steer * turn_strength * dt
+
+# --- Drag & speed clamp ---
+@vx *= drag ** (dt * 60)
+@vy *= drag ** (dt * 60)
+
+speed = Math.sqrt(@vx * @vx + @vy * @vy)
+if speed > cur_max
+  scale = cur_max / speed
+  @vx *= scale
+  @vy *= scale
+end
+
+# --- Movement & wall bounce ---
+dx = @vx * dt
+dy = @vy * dt
+
+if map.is_road_world?(@x + dx, @y + dy)
+  @x += dx
+  @y += dy
+else
+  @vx *= -0.4
+  @vy *= -0.4
+end
 
     if map.is_road_world?(@x + dx, @y + dy)
       @x += dx
